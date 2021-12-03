@@ -9,12 +9,18 @@
 }
 
 
+:root {
+    --dark-blue: #4C0070;
+    --light-blue: #5a0d7e;
+}
+
+
 /* Nav Style Start Here */
 
 nav {
     display: flex;
     height: 4rem;
-    background-color: #4C0070;
+    background-color: var(--dark-blue);
     align-items: center;
     justify-content: space-between;
     padding: 0 3.125rem 0 4.25rem;
@@ -39,6 +45,7 @@ nav .logo {
 nav ul {
     display: flex;
     list-style-type: none;
+    position: relative;
 }
 
 nav ul li {
@@ -71,11 +78,52 @@ nav .menu-btn i {
 }
 
 
+/*----------
+ --Sub Nav-- 
+ ----------*/
+
+nav ul ul {
+    background-color: var(--light-blue);
+    position: absolute;
+    top: -50rem;
+    flex-direction: column;
+    transition: .3s;
+    z-index: -2;
+    border-end-end-radius: 1.5rem;
+    border-end-start-radius: .2rem;
+}
+
+nav ul li:hover > ul, 
+nav ul li:focus-within > ul {
+    top: 2.6rem;
+}
+
+ul li ul li {
+    margin: 1rem .3rem;
+    text-align: center;
+}
+
+ul li ul li ul li {
+    width: 7rem;
+}
+
+
+nav ul ul ul {
+    left: 5rem;
+}
+
+nav ul ul li:hover > ul, 
+nav ul ul li:focus-within > ul {
+    top: 7rem;
+}
+
+
 /*----------------------
 -- Responsive (750px) -- 
 ----------------------*/
 
 @media (max-width: 750px) {
+
     nav .menu-btn i {
         display: block;
     }
@@ -88,18 +136,18 @@ nav .menu-btn i {
     nav ul {
         position: absolute;
         flex-direction: column;
-        left: 0;
-        top: -100rem;
-        min-height: 50vh;
+        left: 0rem;
+        top: -30rem;
         width: 100%;
-        text-align: center;
+        text-align: left;
+        padding-left: 2rem;
         background-color: #5a0d7e;
         transition: .3s ease;
         z-index: -7;
     }
 
     #click:checked ~ ul {
-        top: 4rem;
+       top: 4rem;
     }
 
     nav ul li {
@@ -115,4 +163,30 @@ nav .menu-btn i {
         background: none;
         color: #B8E4F0;
     }
+
+    nav ul ul {
+        background-color: var(--light-blue);
+        position: relative;
+        top: 0rem;
+        left: 5rem;
+        height: 10.5rem;
+        width: 10rem;
+        padding-left: 0;
+        z-index: 5;
+        display: none;
+        
+    }
+
+    nav ul li:hover > ul, 
+    nav ul li:focus-within > ul {
+        top: -2rem;       
+        display: flex;
+    }
+
+    nav ul ul ul {
+        position: absolute;
+        left: 7em;
+        margin-top: 1rem;
+    }
+
 }
